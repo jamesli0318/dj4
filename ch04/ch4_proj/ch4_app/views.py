@@ -3,12 +3,16 @@ from django.http import HttpResponse, Http404
 from ch4_app.models import Product
 import random
 # Create your views here.
-def about (request):
+
+def index(request):
     quotes = ['To be or not to be is a question.',
             'A dog jumps over a lazy fox.',
             'Knowledge is power.']
     quote = random.choice(quotes)
 
+    return render(request, 'index.html', locals())
+
+def about (request):
     return render(request, 'about.html', locals())
 
 def listing(request):
