@@ -8,7 +8,7 @@ def index(request):
 def detail(request, id):
     try:
         product = models.Product.objects.get(id=id)
-        # images = 
+        images = models.PPhoto.objects.get(product=product)
     except:
         pass
     return render(request, 'detail.html', locals())
