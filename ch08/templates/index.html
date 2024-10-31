@@ -1,0 +1,22 @@
+<!-- index.html (dj4ch08 project) -->
+{% extends "base.html" %}
+{% block title %}我有話要說{% endblock %}
+{% block content %}
+<div class='container' align=center>
+
+    <form name='my_form' action='/' method='GET'>
+        <label for='user_id'>Your ID:</label>
+        <input id='user_id' type='text' name='user_id'>
+        <label for='user_pass'>Your Password:</label>
+        <input id='user_pass' type='password' name='user_pass'>
+        <input type='submit' value='Login'>
+        <input type='reset' value='Clear'>
+    </form>
+    Your ID: {{ uid | default:"未輸入ID" }}</br>
+    {% if verified %}
+        <em>Pass</em>
+    {% else %}
+        <em>Wrong User ID or Password</em>
+    {% endif %}
+</div>
+{% endblock %}
