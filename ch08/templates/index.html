@@ -5,18 +5,43 @@
 <div class='container' align=center>
 
     <form name='my_form' action='/' method='GET'>
-        <label for='user_id'>Your ID:</label>
+        My Mood: </br>
+        {% for m in moods %}
+        <input type='radio' name='mood', value='{{ m.status }}'>{{ m.status }}
+        {% endfor %}
+        </br>
+        Board:</br>
+        <textarea name='user_post' row=3 col=70></textarea></br>
+        <label for='user_id'>Your Nickname:</label>
         <input id='user_id' type='text' name='user_id'>
-        <label for='user_pass'>Your Password:</label>
+        <label for='user_pass'>Post Password:</label>
         <input id='user_pass' type='password' name='user_pass'>
-        <input type='submit' value='Login'>
+        <input type='submit' value='Post'>
         <input type='reset' value='Clear'>
     </form>
-    Your ID: {{ uid | default:"未輸入ID" }}</br>
-    {% if verified %}
-        <em>Pass</em>
-    {% else %}
-        <em>Wrong User ID or Password</em>
-    {% endif %}
+    <div class='row'>
+        <div class='col-md-12'>
+            <div class='card'>
+                <div class='card-header' align=center>
+                <h3>~~I am just say~~</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='row'>
+      {% for p in posts %}
+      <div class='col-sm-12 col-md-4'>
+        <div class='card'>
+            <div class='card-header' text-white bg-primary>【{{ p.nickname }}】</div>
+            <div class='card-body'>{{ p.message | linebreaks }}</div>
+            <div class='card-footer' align='right'>
+                <i><small>{{ p.pub_time }}</small></i>
+            </div>
+        </div>
+      </div>
+      {% empty %}
+        No message now
+      {% endfor %}
+    </div>
 </div>
 {% endblock %}
